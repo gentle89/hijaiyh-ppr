@@ -1,0 +1,43 @@
+html,body
+{
+    background: #333;
+    color: chartreuse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.input{
+    color: aliceblue;
+    text-align: left;
+    background: transparent;
+    padding: 5px;
+    border: 1px solid chartreuse;
+    transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+}
+.submit{
+    color: chartreuse;
+    background: transparent;
+    border: 1px solid aliceblue;
+    padding: 5px;
+}
+.submit:hover{
+    background: chartreuse;
+    color: #333;
+    border: chartreuse;
+    transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+}
+.input:hover{
+    box-shadow: 0px 0px 9px greenyellow;
+}
+.input,.submit{width:100%;max-width:500px;margin:5px;}
+
+.center{
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
