@@ -110,7 +110,12 @@ iyh_install()
     sleep 1
     echo "[!] Restart apache2 ///"
     /etc/init.d/apache2 restart
-
+    sleep 3
+    clear
+    iyh_banner
+    echo -e $h"INSTALLATION WAS DONE !"$n
+    echo -e $k"http://YourIPserver/auth"$n" To login with default :"
+    echo "username : admin | password : hijaiyh"
 
 }
 

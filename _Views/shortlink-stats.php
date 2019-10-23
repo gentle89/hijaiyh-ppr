@@ -27,7 +27,7 @@ $block = $this->db->get_where('iyh_stats',['id_link' => $idlink , 'status' => 'b
 
 <table class="table table-striped table-hover table-border" id="datatable">
     <thead>
-        <th>Status</th><th>Device</th><th>Browser</th><th>Platform</th><th>IP Address</th><th>Country</th>
+        <th>Status</th><th>Description<th>Device</th><th>Browser</th><th>Platform</th><th>IP Address</th><th>Country</th>
 </thead>
 <tbody>
 <?php
@@ -42,6 +42,7 @@ foreach($q2->result() as $row)
     }
     echo "<tr>";
     echo "<td>".$status."</td>";
+    echo "<td>".$row->description."</td>";
     echo "<td>".$row->device."</td>";
     echo "<td>".$row->browser."</td>";
     echo "<td>".$row->platform."</td>";

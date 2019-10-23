@@ -55,7 +55,7 @@ Class Redirect extends CI_Controller{
             // block robots.
             if($this->agent->is_robot())
             {
-                $this->blocker->stats($data->id_link,'block',$ip,$country);
+                $this->blocker->stats($data->id_link,'block',$ip,$country,'Block robots by ci');
                 redirect($data->cloak);
                 exit;
             }
@@ -63,7 +63,7 @@ Class Redirect extends CI_Controller{
             if(isset($antibot) && $antibot == 'antibot')
             {
                 if($this->blocker->antibot())
-                {$this->blocker->stats($data->id_link,'antibot.pw_block',$ip,$country);
+                {$this->blocker->stats($data->id_link,'antibot.pw_block',$ip,$country,'Block by antibot');
                     redirect($data->cloak);
                 exit;
                 }
@@ -72,7 +72,7 @@ Class Redirect extends CI_Controller{
             if(isset($ip) && $ip == 'ip')
             {
                 if($this->blocker->block_ip($this->userIP()))
-                {$this->blocker->stats($data->id_link,'block',$ip,$country);
+                {$this->blocker->stats($data->id_link,'block',$ip,$country,'Block by IP from DB');
                     redirect($data->cloak);
                 exit;
                 }
@@ -80,7 +80,7 @@ Class Redirect extends CI_Controller{
             if(isset($host) && $host == 'host')
             {
                 if($this->blocker->block_host(gethostbyaddr($this->userIP())))
-                {$this->blocker->stats($data->id_link,'block',$ip,$country);
+                {$this->blocker->stats($data->id_link,'block',$ip,$country,'Block by Host from DB');
                     redirect($data->cloak);
                 exit;
                 }
@@ -88,7 +88,7 @@ Class Redirect extends CI_Controller{
             if(isset($agent) && $agent == 'agent')
             {
                 if($this->blocker->block_agent($_SERVER['HTTP_USER_AGENT']))
-                {$this->blocker->stats($data->id_link,'block',$ip,$country);
+                {$this->blocker->stats($data->id_link,'block',$ip,$country,'Block by Agent from DB');
                     redirect($data->cloak);
                 exit;
                 }

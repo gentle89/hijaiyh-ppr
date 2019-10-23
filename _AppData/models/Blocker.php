@@ -43,7 +43,7 @@ Class Blocker extends CI_Model{
         }
     }
 
-    public function stats($id,$status,$ip,$country)
+    public function stats($id,$status,$ip,$country,$ket)
     {
         $this->db->insert('iyh_stats',['id_link' => $id,
                                       'status' => $status,
@@ -51,7 +51,8 @@ Class Blocker extends CI_Model{
                                       'browser' => $this->agent->browser(),
                                       'platform' => $this->agent->platform(),
                                       'ip' => $ip,
-                                      'country' => $country]);
+                                      'country' => $country,
+                                      'description' => $ket]);
     }
  public function httpGet($url){
         $ch = curl_init();
