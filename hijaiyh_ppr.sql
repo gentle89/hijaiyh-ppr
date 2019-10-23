@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2019 at 05:41 PM
+-- Generation Time: Oct 23, 2019 at 08:18 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -1542,6 +1542,7 @@ CREATE TABLE `iyh_stats` (
   `device` varchar(100) NOT NULL,
   `platform` varchar(100) NOT NULL,
   `status` enum('allow','block','antibot.pw_block') NOT NULL,
+  `description` varchar(100) NOT NULL,
   `country` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1549,21 +1550,21 @@ CREATE TABLE `iyh_stats` (
 -- Dumping data for table `iyh_stats`
 --
 
-INSERT INTO `iyh_stats` (`id_stats`, `id_link`, `ip`, `browser`, `device`, `platform`, `status`, `country`) VALUES
-(1, 3, '::1', 'Chrome', '', 'Windows 10', 'allow', 'Invalid IP address.'),
-(2, 2, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(3, 2, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(4, 3, '::1', 'Chrome', '', 'Windows 10', 'allow', 'Invalid IP address.'),
-(5, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(6, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(7, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(8, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(9, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(10, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(11, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(12, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(13, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.'),
-(14, 3, '::1', 'Chrome', '', 'Windows 10', 'block', 'Invalid IP address.');
+INSERT INTO `iyh_stats` (`id_stats`, `id_link`, `ip`, `browser`, `device`, `platform`, `status`, `description`, `country`) VALUES
+(1, 3, '::1', 'Chrome', '', 'Windows 10', 'allow', '', 'Invalid IP address.'),
+(2, 2, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(3, 2, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(4, 3, '::1', 'Chrome', '', 'Windows 10', 'allow', '', 'Invalid IP address.'),
+(5, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(6, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(7, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(8, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(9, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(10, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(11, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(12, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(13, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
+(14, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.');
 
 -- --------------------------------------------------------
 
