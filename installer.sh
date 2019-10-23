@@ -59,9 +59,45 @@ iyh_depen()
 	echo "[!] Installing apache2 webserver , php ..."
 	apt-get install apache2 libapache2-mod-php php php-cli php-curl php-zip php-common php-mbstring php-mysql -y
 	clear
+    echo "[!] Installing mariadb-server ..."
+    apt-get install mariadb-server -y
+    clear
 	echo "[!] Installing unzip,wget,git ..."
 	apt-get install unzip wget git -y
 	clear
 	echo "Installing dependencies DONE."
 	echo "Press ENTER to continue"; read x
 }
+iyh_install()
+{
+
+	clear
+	echo "[!] Cloning from repository ..."
+	git clone https://github.com/justalinko/hijaiyh-ppr.git
+	echo "[!] Moving to /var/www/html ..."
+	mv hijaiyh-ppr/* /var/www/html/
+	sleep 1
+	echo "[!] Configuring databases ..."
+    echo "!!!! Create database password !!!!!"
+    mysql_secure_installation
+    clear
+    read -p "Input database password : " dbpass
+    echo "[!] Creating database ..."
+    mysql -h localhost -u root -p$dbpass -e 'CREATE DATABASE hijaiyh_ppr;'
+    echo "[!] Importing database ..."
+    mysql -h localhost -u root -p$dbpass hijaiyh_ppr -e 'source hijaiyh_ppr/hijaiyh_ppr.sql;'
+    echo "[!] Cleaning database ..."
+    mysql -h localhost -u root -p$dbpass -e 'GRANT ALL PRIVILEGES ON *.* to "root"@"localhost" identified by "$dbpass"; '
+    mysql -h localhost -u root -p$dbpass -e 'FLUSH PRIVILEGES;'
+
+
+}
+
+if [[ `whoami` != 'root' ]]; then
+	echo "ROOT ONLY !"
+	exit 1
+else
+	iyh_banner
+	iyh_depen
+	iyh_install
+fi
