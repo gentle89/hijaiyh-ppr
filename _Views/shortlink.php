@@ -1,6 +1,6 @@
 <script>
 function toggle(source) {
-  checkboxes = document.getElementsByName('blocker[]');
+  checkboxes = document.getElementsByName('blocker[1]');
   for(var i=0, n=checkboxes.length;i<n;i++) {
     checkboxes[i].checked = source.checked;
   }
@@ -27,12 +27,12 @@ if($this->uri->segment(3) == 'new'){
 <input type="text" name="custom" class="form-control" minglenght="6">
 <br>
 <label>Blocker </label><br>
-[ <input type="checkbox" onClick="toggle(this);"> Select All ]
-[ <input type="checkbox" name="blocker[]" value="ip"> Block IP ] [ <input type="checkbox" name="blocker[]" value="host"> Block Hostname ] [ <input type="checkbox" name="blocker[]" value="agent"> Block UserAgent ]
+<!-- [ <input type="checkbox" onClick="toggle(this);"> Select All ] -->
+[ <input type="checkbox" name="blocker[ip]" value="1"> Block IP ] [ <input type="checkbox" name="blocker[host]" value="1"> Block Hostname ] [ <input type="checkbox" name="blocker[agent]" value="1"> Block UserAgent ]
 <?php
 $q = $this->db->get_where('iyh_users',['id_users' => $this->session->id_users])->row();
 if($q->antibot_apikey != ''){
-    ?>[ <input type="checkbox" name="blocker[]" value="antibot"> ANTIBOT.PW ]
+    ?>[ <input type="checkbox" name="blocker[antibot]" value="1"> ANTIBOT.PW ]
 <?php
 }
 ?>
@@ -100,14 +100,16 @@ if($q->antibot_apikey != ''){
 <input type="text" name="custom" class="form-control" minlenght="6" value="<?=substr($value->short,3,6);?>">
 <br>
 <label>Blocker </label><br>
-[ <input type="checkbox" onClick="toggle(this);"> Select All ]
-[ <input type="checkbox" name="blocker[]" value="ip"> Block IP ] [ <input type="checkbox" name="blocker[]" value="host"> Block Hostname ] [ <input type="checkbox" name="blocker[]" value="agent"> Block UserAgent ]<?php
+
+[ <input type="checkbox" name="blocker[ip]" value="1"> Block IP ] [ <input type="checkbox" name="blocker[host]" value="1"> Block Hostname ] [ <input type="checkbox" name="blocker[agent]" value="1"> Block UserAgent ]
+<?php
 $q = $this->db->get_where('iyh_users',['id_users' => $this->session->id_users])->row();
 if($q->antibot_apikey != ''){
-    ?>[ <input type="checkbox" name="blocker[]" value="antibot"> ANTIBOT.PW ]
+    ?>[ <input type="checkbox" name="blocker[antibot]" value="1"> ANTIBOT.PW ]
 <?php
 }
-?><br><br>
+?>
+<br><br>
 <input type="submit" class="btn btn-primary btn-block" name="submit" value="Save shortlink">
 </form>
 </div>

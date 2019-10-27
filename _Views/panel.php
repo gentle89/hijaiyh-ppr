@@ -1,17 +1,40 @@
+<?php
+$jml_blockers = $this->db->get('iyh_blocker')->num_rows();
+$jip = $this->db->get_where('iyh_blocker',['type' => 'ip'])->num_rows();
+$jag = $this->db->get_where('iyh_blocker',['type' => 'agent'])->num_rows();
+$jho = $this->db->get_where('iyh_blocker',['type' => 'host'])->num_rows();
 
+?>
 
     <div class="content p-4">
-        <h1 class="display-5 mb-4">Hello, world!</h1>
+        <h1 class="display-5 mb-4">HijaIyh Premium Redirect.</h1>
 
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-            ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-            condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.
-            Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 bg-danger text-white p-4">
+                <h2><?=$jml_blockers;?></h2>
+                    <p>All blockers</p>
+            </div>
+            <div class="col-md-3 col-lg-3 bg-warning text-white p-4">
+                <h2><?=$jip;?></h2>
+                    <p>Blocker IP</p>
+            </div>
+            <div class="col-md-3 col-lg-3 bg-success text-white p-4">
+                <h2><?=$jag;?></h2>
+                    <p>Blocker User-Agent</p>
+            </div>
+            <div class="col-md-3 col-lg-3 bg-primary text-white p-4">
+                <h2><?=$jho;?></h2>
+                    <p>Blocker Hostname</p>
+            </div>
+        </div><br><br>
+    <div class="content-fluid bg-light p-4">
+    <p>
+        <b>HijaIyh PPR</b>, adalah tools script redirect yang di lapisi dengan blocker memungkinkan sistem untuk memfilter visitor dari bots. Adapun tools ini bisa di integrasi kan dengan platform Antibot.pw hanya dengan menambahkan APiKey dari Antibot.pw,
+        Secara default script ini sudah ada blocker bawaan dan anda juga bisa menambah blocker sendiri.
 
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-            ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-            condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.
-            Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+        <i>- HijaIyh Project.</i>
+    </p>
     </div>
-</div>
+</div> 
+
 

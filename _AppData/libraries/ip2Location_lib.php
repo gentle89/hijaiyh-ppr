@@ -6,7 +6,7 @@ if(!defined('IP2LOCATION_DATABASE')) {
 }
 
 require_once('ip2location/IP2Location.php');
-##wkwkwk
+
 class Ip2location_lib {
 	private $database;
 

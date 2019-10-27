@@ -7,40 +7,46 @@ Class Blocker extends CI_Model{
         $block = $this->db->get_where('iyh_blocker' , ['type' => 'ip'])->result();
         foreach($block as $bot)
         {
-            if(preg_match("/".$bot."/i",$ip))
+            $botip = $bot->content;
+            if(preg_match("/".$botip."/i",$ip))
             {
                 return true;
             }else{
                 return false;
             }
         }
+        //return false;
 
     }
-    public function block_host($host)
+    public function block_host()
     {
         $block = $this->db->get_where('iyh_blocker' , ['type' => 'host'])->result();
         foreach($block as $bot)
         {
-            if(preg_match("/".strtolower($bot)."/i",strtolower($host)))
-            {
+            $hostku = strtolower(@gethostbyaddr($_SERVER['REMOTE_ADDR']));
+             if(substr_count($hostku,strtolower($bot->content)) > 0 )
+             {
                 return true;
-            }else{
+             }else{
                 return false;
-            }
-        }
+             }
+           //  return false;
     }
-    public function block_agent($agent)
+}
+    public function block_agent()
     {
         $block = $this->db->get_where('iyh_blocker' , ['type' => 'agent'])->result();
         foreach($block as $bot)
         {
-            if(preg_match("/".strtolower($bot)."/i",strtolower($agent)))
-            {
-                return true;
-            }else{
-                return false;
-            }
+            $agentku=strtolower($_SERVER['HTTP_USER_AGENT']);
+             if(substr_count($agentku,strtolower($bot->content)) > 0 )
+    {
+      return true;
+    }else{
+        return false;
         }
+    }
+   // return false;
     }
 
     public function stats($id,$status,$ip,$country,$ket)
@@ -61,12 +67,12 @@ Class Blocker extends CI_Model{
         $response = curl_exec($ch);
         return $response;
     }
-    public function antibot(){
+    public function antibot($ip){
         $apiget = $this->db->get_where('iyh_users',['id_users' => $this->session->id_users])->row();
         $api = $apiget->antibot_apikey;
 
-        $ip         = $this->userIP();
-        $respons    = $this->httpGet("https://antibot.pw/api/v2-blockers?ip=".$this->userIP()."&apikey=".$api."&ua=".urlencode($_SERVER['HTTP_USER_AGENT']));
+      
+        $respons    = $this->httpGet("https://antibot.pw/api/v2-blockers?ip=".$ip."&apikey=".$api."&ua=".urlencode($_SERVER['HTTP_USER_AGENT']));
         $json       = json_decode($respons,true);
         if($json['is_bot'] == 1 || $json['is_bot'] == true){
             return true;

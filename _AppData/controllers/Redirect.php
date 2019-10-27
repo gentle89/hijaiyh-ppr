@@ -44,11 +44,20 @@ Class Redirect extends CI_Controller{
         if($q->num_rows() > 0)
         {
             $data = $q->row();
-            $b = json_decode($data->blocker);
-            $ip = $b[0];
-            $host = $b[1];
-            $agent = $b[2];
-            $antibot = $b[3];
+            $b = json_decode($data->blocker,true);
+           
+
+            if(array_key_exists('antibot',$b))
+            {
+                //antibot
+          
+                if($this->blocker->antibot($this->userIP()))
+                {$this->blocker->stats($data->id_link,'antibot.pw_block',$ip,$country,'Block by antibot');
+                    redirect($data->cloak);
+                exit;
+                }
+            
+            }
 
             $ip = $this->userIP();
             $country = $this->ip2location_lib->getCountryName($ip);
@@ -59,17 +68,9 @@ Class Redirect extends CI_Controller{
                 redirect($data->cloak);
                 exit;
             }
-            //antibot
-            if(isset($antibot) && $antibot == 'antibot')
-            {
-                if($this->blocker->antibot())
-                {$this->blocker->stats($data->id_link,'antibot.pw_block',$ip,$country,'Block by antibot');
-                    redirect($data->cloak);
-                exit;
-                }
-            }
+            
             // blocker hijaiyh
-            if(isset($ip) && $ip == 'ip')
+            if(array_key_exists('ip',$b))
             {
                 if($this->blocker->block_ip($this->userIP()))
                 {$this->blocker->stats($data->id_link,'block',$ip,$country,'Block by IP from DB');
@@ -77,17 +78,17 @@ Class Redirect extends CI_Controller{
                 exit;
                 }
             }
-            if(isset($host) && $host == 'host')
+            if(array_key_exists('host',$b))
             {
-                if($this->blocker->block_host(gethostbyaddr($this->userIP())))
+                if($this->blocker->block_host())
                 {$this->blocker->stats($data->id_link,'block',$ip,$country,'Block by Host from DB');
                     redirect($data->cloak);
                 exit;
                 }
             }
-            if(isset($agent) && $agent == 'agent')
+            if(array_key_exists('agent',$b))
             {
-                if($this->blocker->block_agent($_SERVER['HTTP_USER_AGENT']))
+                if($this->blocker->block_agent())
                 {$this->blocker->stats($data->id_link,'block',$ip,$country,'Block by Agent from DB');
                     redirect($data->cloak);
                 exit;
@@ -97,7 +98,7 @@ Class Redirect extends CI_Controller{
             // end.
 
             // allow.
-            $this->blocker->stats($data->id_link,'allow',$ip,$country);
+            $this->blocker->stats($data->id_link,'allow',$ip,$country,'Allowed:PPR');
             redirect($data->link);
         }else{
             echo "cari ap? ";

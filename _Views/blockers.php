@@ -19,4 +19,29 @@
 	<?=form_close();?>	
 	</div>
 </div>
+<br><br>
+<div class="card">
+	<div class="card card-header bg-danger">
+		<h3 class="text-white">Bot you added</h3>
+	</div>
+	<div class="card card-body">
+	<table class="table table-hover table-striped " id="datatable">
+		<thead>
+			<th>No.</th><th>Type</th><th>Bot</th>
+		</thead>
+		<tbody>
+			<?php
+			$q = $this->db->get_where('iyh_blocker',['author' => $this->session->username]);
+			foreach($q->result() as $x)
+			{
+				echo "<tr><td>".$n++."</td>";
+				echo "<td>".$x->type."</td>";
+				echo "<td>".$x->content."</td></tr>";
+			}
+			?>
+		</tbody>
+	</table>
+	</div>
+</div>
+
 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2019 at 08:18 PM
+-- Generation Time: Oct 27, 2019 at 06:27 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -1501,8 +1501,7 @@ INSERT INTO `iyh_blocker` (`id_blocker`, `type`, `content`, `author`, `status`) 
 (1458, 'ip', '^34.220.32.208', '', 'accept'),
 (1459, 'ip', '115.89.74.126', '', 'accept'),
 (1460, 'ip', '^18.237.205.199', '', 'accept'),
-(1461, 'ip', '^199.66.201.19', '', 'accept'),
-(1462, 'ip', '::1', '', 'accept');
+(1461, 'ip', '^199.66.201.19', '', 'accept');
 
 -- --------------------------------------------------------
 
@@ -1524,9 +1523,7 @@ CREATE TABLE `iyh_link` (
 --
 
 INSERT INTO `iyh_link` (`id_link`, `link`, `cloak`, `short`, `blocker`, `id_users`) VALUES
-(1, 'https://google.com', 'https://facebook.com', 'abcdefg', '', 1),
-(2, 'http://justalinko.com', 'https://facebook.com', 'iyh040bda', '[\"ip\",\"host\",\"agent\"]', 0),
-(3, 'https://iyhproduction.com', 'https://facebook.com', 'iyhwkwkwkwk', '[\"ip\",\"host\",\"agent\"]', 2);
+(1, 'http://justalinko.com', 'https://jamesclear.com', 'iyhb94522', '{\"host\":\"1\",\"agent\":\"1\"}', 2);
 
 -- --------------------------------------------------------
 
@@ -1551,20 +1548,14 @@ CREATE TABLE `iyh_stats` (
 --
 
 INSERT INTO `iyh_stats` (`id_stats`, `id_link`, `ip`, `browser`, `device`, `platform`, `status`, `description`, `country`) VALUES
-(1, 3, '::1', 'Chrome', '', 'Windows 10', 'allow', '', 'Invalid IP address.'),
-(2, 2, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(3, 2, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(4, 3, '::1', 'Chrome', '', 'Windows 10', 'allow', '', 'Invalid IP address.'),
-(5, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(6, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(7, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(8, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(9, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(10, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(11, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(12, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(13, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.'),
-(14, 3, '::1', 'Chrome', '', 'Windows 10', 'block', '', 'Invalid IP address.');
+(1, 1, '::1', 'Chrome', '', 'Windows 10', 'block', 'Block by IP from DB', 'Invalid IP address.'),
+(2, 1, '::1', 'Chrome', '', 'Windows 10', 'block', 'Block by IP from DB', 'Invalid IP address.'),
+(3, 1, '::1', 'Chrome', '', 'Windows 10', 'block', 'Block by IP from DB', 'Invalid IP address.'),
+(4, 1, '::1', 'Chrome', '', 'Windows 10', 'block', 'Block by IP from DB', 'Invalid IP address.'),
+(5, 1, '::1', 'Chrome', '', 'Windows 10', 'block', 'Block by IP from DB', 'Invalid IP address.'),
+(6, 1, '::1', 'Chrome', '', 'Windows 10', 'block', 'Block by Host from DB', 'Invalid IP address.'),
+(7, 1, '::1', 'Chrome', '', 'Windows 10', 'allow', 'Allowed', 'Invalid IP address.'),
+(8, 1, '::1', 'Chrome', '', 'Windows 10', 'allow', 'Allowed', 'Invalid IP address.');
 
 -- --------------------------------------------------------
 
@@ -1631,13 +1622,13 @@ ALTER TABLE `iyh_blocker`
 -- AUTO_INCREMENT for table `iyh_link`
 --
 ALTER TABLE `iyh_link`
-  MODIFY `id_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `iyh_stats`
 --
 ALTER TABLE `iyh_stats`
-  MODIFY `id_stats` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_stats` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `iyh_users`
