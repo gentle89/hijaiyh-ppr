@@ -45,7 +45,8 @@ Class Redirect extends CI_Controller{
         {
             $data = $q->row();
             $b = json_decode($data->blocker,true);
-           
+            $ip = $this->userIP();
+            $country = $this->ip2location_lib->getCountryName($ip);
 
             if(array_key_exists('antibot',$b))
             {
@@ -59,8 +60,7 @@ Class Redirect extends CI_Controller{
             
             }
 
-            $ip = $this->userIP();
-            $country = $this->ip2location_lib->getCountryName($ip);
+
             // block robots.
             if($this->agent->is_robot())
             {

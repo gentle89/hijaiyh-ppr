@@ -8,14 +8,41 @@ Class Hijaiyh extends CI_Controller{
         
         parent::__construct();
 
+        $this->load->model('himodel');
+        $params = ['acc_key' => $this->himodel->account_key(),
+                    'api_key' => $this->himodel->api_key()];
+        $this->load->library('hiapi',$params);
         if(!$this->session->has_userdata('logged_in'))
         {
             redirect(base_url('auth/signin'));
+        }
+         $check = $this->db->get_where('iyh_users',['id_users' =>$this->session->id_users])->row();
+        if($check->api_key == '' || empty($check->api_key) || $check->account_key =='' || empty($check->account_key))
+        {
+            redirect(base_url('activation'));
+            exit;
+        }else{
+            if(!$this->session->has_userdata('api_checked')){
+
+            $data = json_decode($this->hiapi->check_live($check->account_key,$check->api_key),true);
+            if($data['status'] != 'live')
+            {
+                $this->db->update('iyh_users',['account_key' => '','api_key' => ''],['id_users' => $this->session->id_users]);
+                redirect(base_url('activation'));
+                exit;
+            }else{
+                $this->session->set_userdata(['api_checked' => 'live']);
+            }
+
+            }
+
         }
     }
 
     public function index()
     {
+       
+
         redirect(base_url('hijaiyh/panel'));
     }
 
