@@ -5,15 +5,26 @@ Class Blocker extends CI_Model{
     public function block_ip($ip)
     {
         $block = $this->db->get_where('iyh_blocker' , ['type' => 'ip'])->result();
+        $true = 0;
+        $false = 0;
         foreach($block as $bot)
         {
             $botip = $bot->content;
-            if(preg_match("/".$botip."/i",$ip))
+            if(preg_match("#".$botip."#",$ip))
             {
-                return true;
+               $true++;
             }else{
-                return false;
+                $false++;
             }
+        }
+        
+        if($true > 0)
+        {
+           
+            return true;
+        }else{
+           
+            return false;
         }
         //return false;
 
@@ -21,31 +32,48 @@ Class Blocker extends CI_Model{
     public function block_host()
     {
         $block = $this->db->get_where('iyh_blocker' , ['type' => 'host'])->result();
+            $true = 0;
+        $false = 0;
         foreach($block as $bot)
         {
             $hostku = strtolower(@gethostbyaddr($_SERVER['REMOTE_ADDR']));
              if(substr_count($hostku,strtolower($bot->content)) > 0 )
              {
-                return true;
+                $true++;
              }else{
-                return false;
+                $false++;
              }
            //  return false;
     }
+        
+        if($true > 0)
+        {
+            return true;
+        }else{
+            return false;
+        }
 }
     public function block_agent()
     {
         $block = $this->db->get_where('iyh_blocker' , ['type' => 'agent'])->result();
+            $true = 0;
+        $false = 0;
         foreach($block as $bot)
         {
             $agentku=strtolower($_SERVER['HTTP_USER_AGENT']);
              if(substr_count($agentku,strtolower($bot->content)) > 0 )
     {
-      return true;
+     $true++;
     }else{
-        return false;
+        $false++;
         }
     }
+        if($true > 0)
+        {
+            return true;
+        }else{
+            return false;
+        }
    // return false;
     }
 

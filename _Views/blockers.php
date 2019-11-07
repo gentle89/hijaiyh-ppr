@@ -31,6 +31,7 @@
 		</thead>
 		<tbody>
 			<?php
+            $n=1;
 			$q = $this->db->get_where('iyh_blocker',['author' => $this->session->username]);
 			foreach($q->result() as $x)
 			{

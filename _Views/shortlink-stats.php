@@ -5,7 +5,10 @@ $q = $this->db->get_where('iyh_link',['id_link' => $idlink])->row();
 
 $allow = $this->db->get_where('iyh_stats' ,['id_link' => $idlink , 'status' => 'allow'])->num_rows();
 $visitor = $this->db->get_where('iyh_stats',['id_link' => $idlink])->num_rows();
-$block = $this->db->get_where('iyh_stats',['id_link' => $idlink , 'status' => 'block'])->num_rows();
+$block1 = $this->db->get_where('iyh_stats',['id_link' => $idlink , 'status' => 'block'])->num_rows();
+$block2 = $this->db->get_where('iyh_stats',['id_link' => $idlink , 'status' => 'antibot.pw_block'])->num_rows();
+$block = ($block1+$block2);
+
 ?>
 <table class="table">
     <tr><td>URL</td><td><?=$q->link;?></td></tr>

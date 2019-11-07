@@ -47,7 +47,7 @@ Class Redirect extends CI_Controller{
             $b = json_decode($data->blocker,true);
             $ip = $this->userIP();
             $country = $this->ip2location_lib->getCountryName($ip);
-
+            //print_r($b);
             if(array_key_exists('antibot',$b))
             {
                 //antibot
@@ -98,8 +98,8 @@ Class Redirect extends CI_Controller{
             // end.
 
             // allow.
-            $this->blocker->stats($data->id_link,'allow',$ip,$country,'Allowed:PPR');
-            redirect($data->link);
+            //$this->blocker->stats($data->id_link,'allow',$ip,$country,'Allowed:PPR');
+           // redirect($data->link);
         }else{
             echo "cari ap? ";
         }

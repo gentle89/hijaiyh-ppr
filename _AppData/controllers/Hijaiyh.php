@@ -139,7 +139,7 @@ Class Hijaiyh extends CI_Controller{
         $this->load->view('footer');
 
         if ($this->uri->segment(3) == 'add') {
-            $bots = $this->input->post('bots');
+            $bots = explode("\n",$this->input->post('bots'));
             $type= $this->input->post('type');
 
             foreach($bots as $bot)
@@ -148,7 +148,7 @@ Class Hijaiyh extends CI_Controller{
                 $this->db->insert('iyh_blocker',['type' => $type , 'content' => $bot , 'author' => $this->session->username,'status' => 'accept']);
             }
 
-            redirect(base_url());
+            redirect(base_url('hijaiyh/blockers'));
         }
     }
 }
