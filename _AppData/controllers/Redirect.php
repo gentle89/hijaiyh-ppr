@@ -98,8 +98,8 @@ Class Redirect extends CI_Controller{
             // end.
 
             // allow.
-            //$this->blocker->stats($data->id_link,'allow',$ip,$country,'Allowed:PPR');
-           // redirect($data->link);
+            $this->blocker->stats($data->id_link,'allow',$ip,$country,'Allowed:PPR');
+            redirect($data->link);
         }else{
             echo "cari ap? ";
         }
